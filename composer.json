@@ -27,5 +27,12 @@
         "init-pre-commit": [
             "cp .git-hooks-pre-commit .git/hooks/pre-commit"
         ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Dotsplatform\\LocationsApiSdk\\App\\LocationsAppServiceProvider"
+            ]
+        }
     }
 }
