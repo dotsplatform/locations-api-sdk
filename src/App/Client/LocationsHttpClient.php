@@ -51,18 +51,11 @@ class LocationsHttpClient implements LocationsClient
 
     private const FILTER_SUITABLE_POLYGONS_URL_TEMPLATE = '/accounts/%s/filter-polygons';
 
-    public function __construct(
-        private readonly string $serviceHost,
-        private readonly Client $client,
-    ) {
-    }
-
     public function storeAccount(Account $account): void
     {
         $url = $this->generateUrl(self::STORE_ACCOUNT_URL_TEMPLATE);
         try {
-            $this->client->post($url, [
-                'headers' => $this->getDefaultHeaders(),
+            $this->makeClient()->post($url, [
                 'json' => $account->toArray(),
             ]);
         } catch (Exception|GuzzleException) {
@@ -77,8 +70,7 @@ class LocationsHttpClient implements LocationsClient
         ]);
 
         try {
-            $response = $this->client->get($url, [
-                'headers' => $this->getDefaultHeaders(),
+            $response = $this->makeClient()->get($url, [
             ]);
         } catch (Exception|GuzzleException) {
             return null;
@@ -98,8 +90,7 @@ class LocationsHttpClient implements LocationsClient
             $dto->getProviderType()->value,
         ]);
         try {
-            $this->client->post($url, [
-                'headers' => $this->getDefaultHeaders(),
+            $this->makeClient()->post($url, [
                 'json' => $dto->toArray(),
             ]);
         } catch (Exception|GuzzleException) {
@@ -124,8 +115,7 @@ class LocationsHttpClient implements LocationsClient
             $providerType,
         ]);
         try {
-            $response = $this->client->get($url, [
-                'headers' => $this->getDefaultHeaders(),
+            $response = $this->makeClient()->get($url, [
             ]);
         } catch (Exception|GuzzleException) {
             return null;
@@ -145,8 +135,7 @@ class LocationsHttpClient implements LocationsClient
         ]);
 
         try {
-            $response = $this->client->get($url, [
-                'headers' => $this->getDefaultHeaders(),
+            $response = $this->makeClient()->get($url, [
                 'json' => $dto->toRequestData(),
             ]);
         } catch (Exception|GuzzleException) {
@@ -173,8 +162,7 @@ class LocationsHttpClient implements LocationsClient
         ]);
 
         try {
-            $response = $this->client->get($url, [
-                'headers' => $this->getDefaultHeaders(),
+            $response = $this->makeClient()->get($url, [
                 'json' => $dto->toRequestData(),
             ]);
         } catch (Exception|GuzzleException) {
@@ -196,8 +184,7 @@ class LocationsHttpClient implements LocationsClient
         ]);
 
         try {
-            $this->client->get($url, [
-                'headers' => $this->getDefaultHeaders(),
+            $this->makeClient()->get($url, [
                 'json' => $dto->toRequestData(),
             ]);
         } catch (Exception|GuzzleException) {
@@ -211,8 +198,7 @@ class LocationsHttpClient implements LocationsClient
         ]);
 
         try {
-            $response = $this->client->get($url, [
-                'headers' => $this->getDefaultHeaders(),
+            $response = $this->makeClient()->get($url, [
                 'json' => $dto->toRequestData(),
             ]);
         } catch (Exception|GuzzleException) {
@@ -234,8 +220,7 @@ class LocationsHttpClient implements LocationsClient
         ]);
 
         try {
-            $response = $this->client->get($url, [
-                'headers' => $this->getDefaultHeaders(),
+            $response = $this->makeClient()->get($url, [
                 'json' => $dto->toRequestData(),
             ]);
         } catch (Exception|GuzzleException) {
@@ -257,8 +242,7 @@ class LocationsHttpClient implements LocationsClient
         ]);
 
         try {
-            $response = $this->client->get($url, [
-                'headers' => $this->getDefaultHeaders(),
+            $response = $this->makeClient()->get($url, [
                 'json' => $dto->toRequestData(),
             ]);
         } catch (Exception|GuzzleException) {
@@ -270,7 +254,7 @@ class LocationsHttpClient implements LocationsClient
             return false;
         }
 
-        return (bool) $data['valid'];
+        return (bool)$data['valid'];
     }
 
     public function filterSuitablePolygons(FilterPolygonsForPositionParamsDTO $dto): array
@@ -280,8 +264,7 @@ class LocationsHttpClient implements LocationsClient
         ]);
 
         try {
-            $response = $this->client->get($url, [
-                'headers' => $this->getDefaultHeaders(),
+            $response = $this->makeClient()->get($url, [
                 'json' => $dto->toRequestData(),
             ]);
         } catch (Exception|GuzzleException) {
@@ -293,22 +276,27 @@ class LocationsHttpClient implements LocationsClient
 
     private function generateUrl(string $template, array $params = []): string
     {
-        return $this->serviceHost.sprintf($template, ...$params);
+        return sprintf($template, ...$params);
     }
 
-    private function getDefaultHeaders(): array
+    private function makeClient(): Client
     {
-        return [
-            'Accept' => 'application/json',
-            'Content-Type' => 'application/json',
-        ];
+        return new Client(
+            [
+                'base_uri' => config('locations-api-sdk.locations-server.host'),
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/json',
+                ]
+            ],
+        );
     }
 
     private function decodeResponse(ResponseInterface $response): array
     {
-        $responseBody = (string) $response->getBody();
+        $responseBody = (string)$response->getBody();
         $data = json_decode($responseBody, true);
-        if (! is_array($data)) {
+        if (!is_array($data)) {
             return [];
         }
 
