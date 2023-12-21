@@ -17,10 +17,10 @@ class GetBatchDistanceDataParamsDTO extends DTO
 
     public function toRequestData(): array
     {
-        $data = array_map(
-            fn (GetDistanceDataParamsDTO $item) => $item->toRequestData(),
-            $this->getItems(),
-        );
+        $data = [];
+        foreach ($this->getItems() as $key => $item) {
+            $data[$key] = $item->toRequestData();
+        }
 
         return [
             'data' => $data,
