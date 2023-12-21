@@ -5,7 +5,7 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace Dotsplatform\LocationsApiSdk\App;
+namespace Dotsplatform\LocationsApiSdk;
 
 use Illuminate\Support\ServiceProvider;
 

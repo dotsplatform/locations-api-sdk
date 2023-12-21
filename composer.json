@@ -4,7 +4,7 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Dotsplatform\\LocationsApiSdk\\": "src/"
+            "Dotsplatform\\LocationsApiSdk\\": "src/App"
         }
     },
     "authors": [
@@ -31,7 +31,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Dotsplatform\\LocationsApiSdk\\App\\LocationsAppServiceProvider"
+                "Dotsplatform\\LocationsApiSdk\\LocationsAppServiceProvider"
             ]
         }
     }

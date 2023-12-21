@@ -5,11 +5,11 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace Dotsplatform\LocationsApiSdk\App\Client\DTO\Params;
+namespace Dotsplatform\LocationsApiSdk\Client\DTO\Params;
 
 use Dots\Data\DTO;
 use Dots\Distance\Position;
-use Dotsplatform\LocationsApiSdk\App\Client\DTO\ProviderType;
+use Dotsplatform\LocationsApiSdk\Client\DTO\ProviderType;
 
 class ReverseGeocodeParamsDTO extends DTO
 {

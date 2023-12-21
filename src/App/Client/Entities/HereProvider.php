@@ -5,7 +5,7 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace Dotsplatform\LocationsApiSdk\App\Client\Entities;
+namespace Dotsplatform\LocationsApiSdk\Client\Entities;
 
 use Dots\Data\Entity;
 

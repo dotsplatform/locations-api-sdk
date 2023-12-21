@@ -5,7 +5,7 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace Dotsplatform\LocationsApiSdk\App\Client\DTO;
+namespace Dotsplatform\LocationsApiSdk\Client\DTO;
 
 enum TransportType: string
 {

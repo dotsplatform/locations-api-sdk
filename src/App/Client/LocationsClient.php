@@ -5,22 +5,22 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace Dotsplatform\LocationsApiSdk\App\Client;
+namespace Dotsplatform\LocationsApiSdk\Client;
 
-use Dotsplatform\LocationsApiSdk\App\Client\DTO\Params\CheckPositionInPolygonParamsDTO;
-use Dotsplatform\LocationsApiSdk\App\Client\DTO\Params\FilterPolygonsForPositionParamsDTO;
-use Dotsplatform\LocationsApiSdk\App\Client\DTO\Params\GeocodeParamsDTO;
-use Dotsplatform\LocationsApiSdk\App\Client\DTO\Params\GetBatchDistanceDataParamsDTO;
-use Dotsplatform\LocationsApiSdk\App\Client\DTO\Params\GetDistanceDataParamsDTO;
-use Dotsplatform\LocationsApiSdk\App\Client\DTO\Params\ReverseGeocodeParamsDTO;
-use Dotsplatform\LocationsApiSdk\App\Client\DTO\Params\StoreProviderDTO;
-use Dotsplatform\LocationsApiSdk\App\Client\DTO\Params\UpdateGeocodeResultParamsDTO;
-use Dotsplatform\LocationsApiSdk\App\Client\DTO\Results\BatchDistanceResultsDTOs;
-use Dotsplatform\LocationsApiSdk\App\Client\DTO\Results\DistanceResultsDTOs;
-use Dotsplatform\LocationsApiSdk\App\Client\DTO\Results\GeocodeResultDTO;
-use Dotsplatform\LocationsApiSdk\App\Client\DTO\Results\ReverseGeocodeResultDTO;
-use Dotsplatform\LocationsApiSdk\App\Client\Entities\Account;
-use Dotsplatform\LocationsApiSdk\App\Client\Entities\Provider;
+use Dotsplatform\LocationsApiSdk\Client\DTO\Params\CheckPositionInPolygonParamsDTO;
+use Dotsplatform\LocationsApiSdk\Client\DTO\Params\FilterPolygonsForPositionParamsDTO;
+use Dotsplatform\LocationsApiSdk\Client\DTO\Params\GeocodeParamsDTO;
+use Dotsplatform\LocationsApiSdk\Client\DTO\Params\GetBatchDistanceDataParamsDTO;
+use Dotsplatform\LocationsApiSdk\Client\DTO\Params\GetDistanceDataParamsDTO;
+use Dotsplatform\LocationsApiSdk\Client\DTO\Params\ReverseGeocodeParamsDTO;
+use Dotsplatform\LocationsApiSdk\Client\DTO\Params\StoreProviderDTO;
+use Dotsplatform\LocationsApiSdk\Client\DTO\Params\UpdateGeocodeResultParamsDTO;
+use Dotsplatform\LocationsApiSdk\Client\DTO\Results\BatchDistanceResultsDTOs;
+use Dotsplatform\LocationsApiSdk\Client\DTO\Results\DistanceResultsDTOs;
+use Dotsplatform\LocationsApiSdk\Client\DTO\Results\GeocodeResultDTO;
+use Dotsplatform\LocationsApiSdk\Client\DTO\Results\ReverseGeocodeResultDTO;
+use Dotsplatform\LocationsApiSdk\Client\Entities\Account;
+use Dotsplatform\LocationsApiSdk\Client\Entities\Provider;
 
 interface LocationsClient
 {

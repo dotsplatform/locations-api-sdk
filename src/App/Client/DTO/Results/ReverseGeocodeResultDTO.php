@@ -5,10 +5,10 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace Dotsplatform\LocationsApiSdk\App\Client\DTO\Results;
+namespace Dotsplatform\LocationsApiSdk\Client\DTO\Results;
 
 use Dots\Data\DTO;
-use Dotsplatform\LocationsApiSdk\App\Client\DTO\ProviderType;
+use Dotsplatform\LocationsApiSdk\Client\DTO\ProviderType;
 
 class ReverseGeocodeResultDTO extends DTO
 {

@@ -5,10 +5,10 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace Dotsplatform\LocationsApiSdk\App\Client\Entities;
+namespace Dotsplatform\LocationsApiSdk\Client\Entities;
 
 use Dots\Data\Entity;
-use Dotsplatform\LocationsApiSdk\App\Client\DTO\ProviderType;
+use Dotsplatform\LocationsApiSdk\Client\DTO\ProviderType;
 
 class Account extends Entity
 {

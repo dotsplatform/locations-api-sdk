@@ -6,7 +6,7 @@
  * @author    Egor Gerasimchuk <egor@mister.am>
  */
 
-namespace Dotsplatform\LocationsApiSdk\App\Client\DTO\Results;
+namespace Dotsplatform\LocationsApiSdk\Client\DTO\Results;
 
 use Dots\Data\DTO;
 
