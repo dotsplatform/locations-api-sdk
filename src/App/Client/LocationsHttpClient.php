@@ -254,7 +254,7 @@ class LocationsHttpClient implements LocationsClient
             return false;
         }
 
-        return (bool)$data['valid'];
+        return (bool) $data['valid'];
     }
 
     public function filterSuitablePolygons(FilterPolygonsForPositionParamsDTO $dto): array
@@ -287,16 +287,16 @@ class LocationsHttpClient implements LocationsClient
                 'headers' => [
                     'Accept' => 'application/json',
                     'Content-Type' => 'application/json',
-                ]
+                ],
             ],
         );
     }
 
     private function decodeResponse(ResponseInterface $response): array
     {
-        $responseBody = (string)$response->getBody();
+        $responseBody = (string) $response->getBody();
         $data = json_decode($responseBody, true);
-        if (!is_array($data)) {
+        if (! is_array($data)) {
             return [];
         }
 
