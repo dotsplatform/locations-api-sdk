@@ -7,21 +7,21 @@
 
 namespace Dotsplatform\LocationsApiSdk\Client;
 
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\CheckPositionInPolygonParamsDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\FilterPolygonsForPositionParamsDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\GeocodeParamsDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\GetBatchDistanceDataParamsDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\GetDistanceDataParamsDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\ReverseGeocodeParamsDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\StoreProviderDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\UpdateGeocodeResultParamsDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\ProviderType;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Results\BatchDistanceResultsDTOs;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Results\DistanceResultsDTOs;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Results\GeocodeResultDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Results\ReverseGeocodeResultDTO;
-use Dotsplatform\LocationsApiSdk\Client\Entities\Account;
-use Dotsplatform\LocationsApiSdk\Client\Entities\Provider;
+use Dotsplatform\LocationsApiSdk\DTO\Params\CheckPositionInPolygonParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\FilterPolygonsForPositionParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\GeocodeParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\GetBatchDistanceDataParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\GetDistanceDataParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\ReverseGeocodeParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\StoreProviderDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\UpdateGeocodeResultParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\ProviderType;
+use Dotsplatform\LocationsApiSdk\DTO\Results\BatchDistanceResults;
+use Dotsplatform\LocationsApiSdk\DTO\Results\DistanceResults;
+use Dotsplatform\LocationsApiSdk\DTO\Results\GeocodeResultDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Results\ReverseGeocodeResultDTO;
+use Dotsplatform\LocationsApiSdk\Entities\Account;
+use Dotsplatform\LocationsApiSdk\Entities\Provider;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -191,10 +191,10 @@ class LocationsHttpClient implements LocationsClient
         }
     }
 
-    public function distanceData(GetDistanceDataParamsDTO $dto): DistanceResultsDTOs
+    public function distanceData(string $accountId, GetDistanceDataParamsDTO $dto): DistanceResults
     {
         $url = $this->generateUrl(self::DISTANCE_DATA_URL_TEMPLATE, [
-            $dto->getAccountId(),
+            $accountId,
         ]);
 
         try {
@@ -202,18 +202,18 @@ class LocationsHttpClient implements LocationsClient
                 'json' => $dto->toRequestData(),
             ]);
         } catch (Exception|GuzzleException) {
-            return DistanceResultsDTOs::empty();
+            return DistanceResults::empty();
         }
 
         $data = $this->decodeResponse($response);
         if (empty($data)) {
-            return DistanceResultsDTOs::empty();
+            return DistanceResults::empty();
         }
 
-        return DistanceResultsDTOs::fromArray($data);
+        return DistanceResults::fromArray($data);
     }
 
-    public function batchDistanceData(GetBatchDistanceDataParamsDTO $dto): BatchDistanceResultsDTOs
+    public function batchDistanceData(GetBatchDistanceDataParamsDTO $dto): BatchDistanceResults
     {
         $url = $this->generateUrl(self::BATCH_DISTANCE_DATA_URL_TEMPLATE, [
             $dto->getAccountId(),
@@ -224,15 +224,15 @@ class LocationsHttpClient implements LocationsClient
                 'json' => $dto->toRequestData(),
             ]);
         } catch (Exception|GuzzleException) {
-            return BatchDistanceResultsDTOs::empty();
+            return BatchDistanceResults::empty();
         }
 
         $data = $this->decodeResponse($response);
         if (empty($data)) {
-            return BatchDistanceResultsDTOs::empty();
+            return BatchDistanceResults::empty();
         }
 
-        return BatchDistanceResultsDTOs::fromArray($data);
+        return BatchDistanceResults::fromArray($data);
     }
 
     public function isPositionInPolygon(CheckPositionInPolygonParamsDTO $dto): bool

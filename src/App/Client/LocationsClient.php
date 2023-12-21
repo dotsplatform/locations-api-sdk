@@ -7,20 +7,20 @@
 
 namespace Dotsplatform\LocationsApiSdk\Client;
 
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\CheckPositionInPolygonParamsDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\FilterPolygonsForPositionParamsDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\GeocodeParamsDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\GetBatchDistanceDataParamsDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\GetDistanceDataParamsDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\ReverseGeocodeParamsDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\StoreProviderDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Params\UpdateGeocodeResultParamsDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Results\BatchDistanceResultsDTOs;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Results\DistanceResultsDTOs;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Results\GeocodeResultDTO;
-use Dotsplatform\LocationsApiSdk\Client\DTO\Results\ReverseGeocodeResultDTO;
-use Dotsplatform\LocationsApiSdk\Client\Entities\Account;
-use Dotsplatform\LocationsApiSdk\Client\Entities\Provider;
+use Dotsplatform\LocationsApiSdk\DTO\Params\CheckPositionInPolygonParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\FilterPolygonsForPositionParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\GeocodeParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\GetBatchDistanceDataParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\GetDistanceDataParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\ReverseGeocodeParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\StoreProviderDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\UpdateGeocodeResultParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Results\BatchDistanceResults;
+use Dotsplatform\LocationsApiSdk\DTO\Results\DistanceResults;
+use Dotsplatform\LocationsApiSdk\DTO\Results\GeocodeResultDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Results\ReverseGeocodeResultDTO;
+use Dotsplatform\LocationsApiSdk\Entities\Account;
+use Dotsplatform\LocationsApiSdk\Entities\Provider;
 
 interface LocationsClient
 {
@@ -42,9 +42,9 @@ interface LocationsClient
 
     public function updateGeocodeResults(UpdateGeocodeResultParamsDTO $dto): void;
 
-    public function distanceData(GetDistanceDataParamsDTO $dto): DistanceResultsDTOs;
+    public function distanceData(string $accountId, GetDistanceDataParamsDTO $dto): DistanceResults;
 
-    public function batchDistanceData(GetBatchDistanceDataParamsDTO $dto): BatchDistanceResultsDTOs;
+    public function batchDistanceData(GetBatchDistanceDataParamsDTO $dto): BatchDistanceResults;
 
     public function isPositionInPolygon(CheckPositionInPolygonParamsDTO $dto): bool;
 

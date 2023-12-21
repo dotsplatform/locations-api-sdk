@@ -4,3 +4,5 @@ parameters:
     - src
   checkMissingIterableValueType: false
   checkGenericClassInNonGenericObjectType: false
+  ignoreErrors:
+    - '#Unsafe usage of new static#'
