@@ -7,15 +7,17 @@
 
 namespace Dotsplatform\LocationsApiSdk\App\Client\DTO\Params;
 
-
 use Dots\Data\DTO;
 use Dotsplatform\LocationsApiSdk\App\Client\DTO\ProviderType;
 
 class GeocodeParamsDTO extends DTO
 {
     protected string $accountId;
+
     protected string $address;
+
     protected ?ProviderType $providerType;
+
     protected bool $withoutCache = false;
 
     public function toRequestData(): array

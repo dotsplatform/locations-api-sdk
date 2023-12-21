@@ -7,7 +7,6 @@
 
 namespace Dotsplatform\LocationsApiSdk\App\Client\DTO\Params;
 
-
 use Dots\Data\DTO;
 use Dots\Distance\Position;
 use Dotsplatform\LocationsApiSdk\App\Client\DTO\ProviderType;
@@ -15,8 +14,11 @@ use Dotsplatform\LocationsApiSdk\App\Client\DTO\ProviderType;
 class ReverseGeocodeParamsDTO extends DTO
 {
     protected string $accountId;
+
     protected ProviderType $providerType;
+
     protected Position $position;
+
     protected bool $withoutCache = false;
 
     public function toRequestData(): array

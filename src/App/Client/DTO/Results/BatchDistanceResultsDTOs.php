@@ -12,8 +12,8 @@ use Dots\Data\DTO;
 
 class BatchDistanceResultsDTOs extends DTO
 {
-    /** @var DistanceResultsDTOs[] */
-    private array $items;
+    /** @var array<string, DistanceResultsDTOs|null> */
+    protected array $items;
 
     public static function fromArray(array $data): static
     {
@@ -31,7 +31,7 @@ class BatchDistanceResultsDTOs extends DTO
     {
         $data = [];
         foreach ($this->items as $key => $item) {
-            $data[$key] = !is_null($item) ? $item->toArray() : null;
+            $data[$key] = ! is_null($item) ? $item->toArray() : null;
         }
 
         return $data;
@@ -39,7 +39,7 @@ class BatchDistanceResultsDTOs extends DTO
 
     public function getItemByKey(string $key): ?DistanceResultsDTOs
     {
-        if (!isset($this->items[$key])) {
+        if (! isset($this->items[$key])) {
             return null;
         }
 

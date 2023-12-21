@@ -7,7 +7,6 @@
 
 namespace Dotsplatform\LocationsApiSdk\App\Client\DTO\Results;
 
-
 use Dots\Data\DTO;
 use Dotsplatform\LocationsApiSdk\App\Client\DTO\ProviderType;
 

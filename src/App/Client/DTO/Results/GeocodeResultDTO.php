@@ -7,7 +7,6 @@
 
 namespace Dotsplatform\LocationsApiSdk\App\Client\DTO\Results;
 
-
 use Dots\Data\DTO;
 use Dots\Distance\Position;
 use Dotsplatform\LocationsApiSdk\App\Client\DTO\ProviderType;
@@ -15,6 +14,7 @@ use Dotsplatform\LocationsApiSdk\App\Client\DTO\ProviderType;
 class GeocodeResultDTO extends DTO
 {
     protected ?ProviderType $provider;
+
     protected ?Position $position;
 
     public function getProvider(): ?ProviderType
@@ -34,7 +34,7 @@ class GeocodeResultDTO extends DTO
 
     public function isValid(): bool
     {
-        return (bool)$this->getPosition()?->isValid();
+        return (bool) $this->getPosition()?->isValid();
     }
 
     public function getPosition(): ?Position

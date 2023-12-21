@@ -7,14 +7,15 @@
 
 namespace Dotsplatform\LocationsApiSdk\App\Client\DTO\Params;
 
-
 use Dots\Data\DTO;
 use Dots\Distance\Position;
 
 class FilterPolygonsForPositionParamsDTO extends DTO
 {
     protected string $accountId;
+
     protected Position $position;
+
     protected array $polygons;
 
     public function toRequestData(): array

@@ -7,14 +7,15 @@
 
 namespace Dotsplatform\LocationsApiSdk\App\Client\DTO\Params;
 
-
 use Dots\Data\DTO;
 use Dotsplatform\LocationsApiSdk\App\Client\DTO\ProviderType;
 
 class StoreProviderDTO extends DTO
 {
     protected string $accountId;
+
     protected ProviderType $providerType;
+
     protected array $data;
 
     public function getAccountId(): string

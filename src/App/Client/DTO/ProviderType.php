@@ -7,7 +7,6 @@
 
 namespace Dotsplatform\LocationsApiSdk\App\Client\DTO;
 
-
 enum ProviderType: string
 {
     case HERE = 'here';

@@ -7,14 +7,15 @@
 
 namespace Dotsplatform\LocationsApiSdk\App\Client\DTO\Params;
 
-
 use Dots\Data\DTO;
 use Dots\Distance\Position;
 
 class GetDistanceDataParamsDTO extends DTO
 {
     protected string $accountId;
+
     protected Position $source;
+
     protected Position $destination;
 
     protected array $transportTypes;

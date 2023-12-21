@@ -7,13 +7,12 @@
 
 namespace Dotsplatform\LocationsApiSdk\App\Client\DTO\Results;
 
-
 use Dots\Data\DTO;
 
 class DistanceResultsDTOs extends DTO
 {
-    /** @var DistanceResultDTO[] */
-    private array $items;
+    /** @var array<string, DistanceResultDTO> */
+    protected array $items;
 
     public static function fromArray(array $data): static
     {

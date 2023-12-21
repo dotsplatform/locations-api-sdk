@@ -7,7 +7,6 @@
 
 namespace Dotsplatform\LocationsApiSdk\App\Client;
 
-
 use Dotsplatform\LocationsApiSdk\App\Client\DTO\Params\CheckPositionInPolygonParamsDTO;
 use Dotsplatform\LocationsApiSdk\App\Client\DTO\Params\FilterPolygonsForPositionParamsDTO;
 use Dotsplatform\LocationsApiSdk\App\Client\DTO\Params\GeocodeParamsDTO;
@@ -31,15 +30,25 @@ use Psr\Http\Message\ResponseInterface;
 class LocationsHttpClient implements LocationsClient
 {
     private const SHOW_ACCOUNT_URL_TEMPLATE = '/accounts/%s';
+
     private const STORE_ACCOUNT_URL_TEMPLATE = '/accounts';
+
     private const SHOW_PROVIDER_URL_TEMPLATE = '/accounts/%s/providers/%s';
+
     private const STORE_PROVIDER_URL_TEMPLATE = '/accounts/%s/providers';
+
     private const GEOCODE_URL_TEMPLATE = '/accounts/%s/geocode';
+
     private const REVERSE_GEOCODE_URL_TEMPLATE = '/accounts/%s/reverse-geocode';
+
     private const UPDATE_GEOCODE_RESULTS_URL_TEMPLATE = '/accounts/%s/geocode';
+
     private const DISTANCE_DATA_URL_TEMPLATE = '/accounts/%s/distance';
+
     private const BATCH_DISTANCE_DATA_URL_TEMPLATE = '/accounts/%s/distance/batch';
+
     private const CHECK_COORDINATES_IN_POLYGON_URL_TEMPLATE = '/accounts/%s/coordinates-for-polygon';
+
     private const FILTER_SUITABLE_POLYGONS_URL_TEMPLATE = '/accounts/%s/filter-polygons';
 
     public function __construct(
@@ -261,7 +270,7 @@ class LocationsHttpClient implements LocationsClient
             return false;
         }
 
-        return (bool)$data['valid'];
+        return (bool) $data['valid'];
     }
 
     public function filterSuitablePolygons(FilterPolygonsForPositionParamsDTO $dto): array
@@ -284,7 +293,7 @@ class LocationsHttpClient implements LocationsClient
 
     private function generateUrl(string $template, array $params = []): string
     {
-        return $this->serviceHost . sprintf($template, ...$params);
+        return $this->serviceHost.sprintf($template, ...$params);
     }
 
     private function getDefaultHeaders(): array
@@ -297,9 +306,9 @@ class LocationsHttpClient implements LocationsClient
 
     private function decodeResponse(ResponseInterface $response): array
     {
-        $responseBody = (string)$response->getBody();
+        $responseBody = (string) $response->getBody();
         $data = json_decode($responseBody, true);
-        if (!is_array($data)) {
+        if (! is_array($data)) {
             return [];
         }
 

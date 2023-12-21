@@ -7,7 +7,6 @@
 
 namespace Dotsplatform\LocationsApiSdk\App\Client\DTO;
 
-
 enum TransportType: string
 {
     case CAR = 'car';

@@ -7,14 +7,16 @@
 
 namespace Dotsplatform\LocationsApiSdk\App\Client\DTO\Params;
 
-
 use Dots\Data\DTO;
 
 class UpdateGeocodeResultParamsDTO extends DTO
 {
     protected string $accountId;
+
     protected string $address;
+
     protected float $latitude;
+
     protected float $longitude;
 
     public function toRequestData(): array

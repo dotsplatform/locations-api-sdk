@@ -7,14 +7,15 @@
 
 namespace Dotsplatform\LocationsApiSdk\App\Client\DTO\Params;
 
-
 use Dots\Data\DTO;
 use Dots\Distance\Position;
 
 class CheckPositionInPolygonParamsDTO extends DTO
 {
     protected string $accountId;
+
     protected Position $position;
+
     protected array $polygon;
 
     public function toRequestData(): array
@@ -42,5 +43,4 @@ class CheckPositionInPolygonParamsDTO extends DTO
     {
         return $this->polygon;
     }
-
 }

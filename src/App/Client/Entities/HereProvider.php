@@ -7,7 +7,6 @@
 
 namespace Dotsplatform\LocationsApiSdk\App\Client\Entities;
 
-
 use Dots\Data\Entity;
 
 class HereProvider extends Entity

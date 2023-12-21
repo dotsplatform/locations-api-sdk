@@ -7,7 +7,6 @@
 
 namespace Dotsplatform\LocationsApiSdk\App\Client;
 
-
 use Dotsplatform\LocationsApiSdk\App\Client\DTO\Params\CheckPositionInPolygonParamsDTO;
 use Dotsplatform\LocationsApiSdk\App\Client\DTO\Params\FilterPolygonsForPositionParamsDTO;
 use Dotsplatform\LocationsApiSdk\App\Client\DTO\Params\GeocodeParamsDTO;
