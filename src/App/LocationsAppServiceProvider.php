@@ -7,8 +7,7 @@
 
 namespace Dotsplatform\LocationsApiSdk\App;
 
-use Carbon\Laravel\ServiceProvider;
-use Dotsplatform\LocationsApiSdk\App\Client\LocationsHttpClient;
+use Illuminate\Support\ServiceProvider;
 
 class LocationsAppServiceProvider extends ServiceProvider
 {
