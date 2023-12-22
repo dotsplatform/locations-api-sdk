@@ -24,6 +24,25 @@ class Account extends Entity
 
     protected ProviderType $routeDistancesProviderType;
 
+    public static function fromArray(array $data): static
+    {
+        $data['geoPositionProviderType'] = ProviderType::from($data['geoPositionProviderType']);
+        $data['autocompleteProviderType'] = ProviderType::from($data['autocompleteProviderType']);
+        $data['routeDistancesProviderType'] = ProviderType::from($data['routeDistancesProviderType']);
+
+        return parent::fromArray($data);
+    }
+
+    public function toArray(): array
+    {
+        $data = parent::toArray();
+        $data['geoPositionProviderType'] = $this->getGeoPositionProviderType()->value;
+        $data['autocompleteProviderType'] = $this->getAutocompleteProviderType()->value;
+        $data['routeDistancesProviderType'] = $this->getRouteDistancesProviderType()->value;
+
+        return $data;
+    }
+
     public function getGeoPositionProviderType(): ProviderType
     {
         return $this->geoPositionProviderType;

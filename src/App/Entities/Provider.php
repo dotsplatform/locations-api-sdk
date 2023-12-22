@@ -20,6 +20,21 @@ class Provider extends Entity
 
     protected array $data;
 
+    public static function fromArray(array $data): static
+    {
+        $data['type'] = ProviderType::from($data['type']);
+
+        return parent::fromArray($data);
+    }
+
+    public function toArray(): array
+    {
+        $data = parent::toArray();
+        $data['type'] = $this->getType()->value;
+
+        return $data;
+    }
+
     public function getId(): string
     {
         return $this->id;
