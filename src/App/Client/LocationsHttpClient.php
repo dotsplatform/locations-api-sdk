@@ -35,7 +35,7 @@ class LocationsHttpClient implements LocationsClient
 
     private const SHOW_PROVIDER_URL_TEMPLATE = '/accounts/%s/providers/%s';
 
-    private const STORE_PROVIDER_URL_TEMPLATE = '/accounts/%s/providers';
+    private const STORE_PROVIDER_URL_TEMPLATE = '/accounts/%s/providers/%s';
 
     private const GEOCODE_URL_TEMPLATE = '/accounts/%s/geocode';
 
