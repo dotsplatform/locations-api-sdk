@@ -18,6 +18,21 @@ class StoreProviderDTO extends DTO
 
     protected array $data;
 
+    public static function fromArray(array $data): static
+    {
+        $data['providerType'] = ProviderType::from($data['providerType']);
+
+        return parent::fromArray($data);
+    }
+
+    public function toArray(): array
+    {
+        $data = parent::toArray();
+        $data['providerType'] = $this->getProviderType()->value;
+
+        return $data;
+    }
+
     public function getAccountId(): string
     {
         return $this->accountId;

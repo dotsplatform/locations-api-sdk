@@ -5,8 +5,7 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace App\DTO\Params;
-
+namespace Tests\App\DTO\Params;
 
 use Dotsplatform\LocationsApiSdk\DTO\Params\UpdateGeocodeResultParamsDTO;
 use Tests\TestCase;
@@ -47,5 +46,23 @@ class UpdateGeocodeResultParamsDTOTest extends TestCase
         $this->assertEquals($data['address'], $requestData['address']);
         $this->assertEquals($data['position']['latitude'], $requestData['latitude']);
         $this->assertEquals($data['position']['longitude'], $requestData['longitude']);
+    }
+
+    public function testCreateNewObjectFromSelf(): void
+    {
+        $data = [
+            'accountId' => $this->uuid(),
+            'address' => $this->uuid(),
+            'position' => [
+                'latitude' => 1,
+                'longitude' => 2,
+            ],
+        ];
+
+        $dto = UpdateGeocodeResultParamsDTO::fromArray(
+            UpdateGeocodeResultParamsDTO::fromArray($data)->toArray(),
+        );
+
+        $this->assertEquals($data['accountId'], $dto->getAccountId());
     }
 }

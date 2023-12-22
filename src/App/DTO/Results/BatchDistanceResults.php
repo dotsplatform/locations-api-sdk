@@ -8,11 +8,10 @@
 
 namespace Dotsplatform\LocationsApiSdk\DTO\Results;
 
-use Dots\Data\FromArrayable;
 use Illuminate\Support\Collection;
 
 /** @extends Collection<string, DistanceResults> */
-class BatchDistanceResults extends Collection implements FromArrayable
+class BatchDistanceResults extends Collection
 {
     public static function fromArray(array $data): static
     {

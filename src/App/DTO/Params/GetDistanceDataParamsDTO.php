@@ -18,6 +18,14 @@ class GetDistanceDataParamsDTO extends DTO
 
     protected array $transportTypes;
 
+    public static function fromArray(array $data): static
+    {
+        $data['source'] = Position::fromArray($data['source'] ?? []);
+        $data['destination'] = Position::fromArray($data['destination'] ?? []);
+
+        return parent::fromArray($data);
+    }
+
     public function toRequestData(): array
     {
         return [

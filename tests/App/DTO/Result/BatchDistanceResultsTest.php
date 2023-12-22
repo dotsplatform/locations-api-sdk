@@ -5,8 +5,7 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace App\DTO\Result;
-
+namespace Tests\App\DTO\Result;
 
 use Dotsplatform\LocationsApiSdk\DTO\Results\BatchDistanceResults;
 use Dotsplatform\LocationsApiSdk\DTO\Results\DistanceResultDTO;
@@ -65,6 +64,23 @@ class BatchDistanceResultsTest extends TestCase
         $this->assertEquals(
             $distanceResults2->toArray(),
             $list->getItemByKey('key2')->toArray(),
+        );
+    }
+
+    public function testCreateNewObjectFromSelf(): void
+    {
+        $distanceResults1 = DistanceResults::fromArray([
+            TransportType::PEDESTRIAN->value => $this->generateDistanceResult()->toArray(),
+        ]);
+
+        $list = BatchDistanceResults::fromArray([
+            'key1' => $distanceResults1->toArray(),
+        ]);
+        $list = BatchDistanceResults::fromArray($list->toArray());
+
+        $this->assertEquals(
+            $distanceResults1->toArray(),
+            $list->getItemByKey('key1')->toArray(),
         );
     }
 

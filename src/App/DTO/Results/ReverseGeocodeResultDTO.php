@@ -26,6 +26,23 @@ class ReverseGeocodeResultDTO extends DTO
 
     protected ?string $number;
 
+    public static function fromArray(array $data): static
+    {
+        if (! empty($data['provider'])) {
+            $data['provider'] = ProviderType::from($data['provider']);
+        }
+
+        return parent::fromArray($data);
+    }
+
+    public function toArray(): array
+    {
+        $data = parent::toArray();
+        $data['provider'] = $this->getProvider()?->value;
+
+        return $data;
+    }
+
     public function getProvider(): ?ProviderType
     {
         return $this->provider;

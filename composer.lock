@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "551760586772a4cebc7474a121518f72",
+    "content-hash": "89df7c716a77633f1c5501f501f336cd",
     "packages": [
         {
             "name": "brick/math",
@@ -375,16 +375,16 @@
         },
         {
             "name": "dotsplatform/utils",
-            "version": "v2.0.0",
+            "version": "v1.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/dotsplatform/utils.git",
-                "reference": "6b1ae323abfaf5de5226741c0d7040c59c6edae4"
+                "reference": "e842b7afcf49e625c482bf0800a641f7737fc20c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/dotsplatform/utils/zipball/6b1ae323abfaf5de5226741c0d7040c59c6edae4",
-                "reference": "6b1ae323abfaf5de5226741c0d7040c59c6edae4",
+                "url": "https://api.github.com/repos/dotsplatform/utils/zipball/e842b7afcf49e625c482bf0800a641f7737fc20c",
+                "reference": "e842b7afcf49e625c482bf0800a641f7737fc20c",
                 "shasum": ""
             },
             "require": {
@@ -410,9 +410,9 @@
             "description": "Development tools from Dots Platform",
             "support": {
                 "issues": "https://github.com/dotsplatform/utils/issues",
-                "source": "https://github.com/dotsplatform/utils/tree/v2.0.0"
+                "source": "https://github.com/dotsplatform/utils/tree/v1.3.0"
             },
-            "time": "2023-12-17T19:17:09+00:00"
+            "time": "2023-12-12T11:07:44+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",

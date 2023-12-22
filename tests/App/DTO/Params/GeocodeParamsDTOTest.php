@@ -5,8 +5,7 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace App\DTO\Params;
-
+namespace Tests\App\DTO\Params;
 
 use Dotsplatform\LocationsApiSdk\DTO\Params\GeocodeParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\ProviderType;
@@ -19,14 +18,14 @@ class GeocodeParamsDTOTest extends TestCase
         $data = [
             'accountId' => $this->uuid(),
             'address' => $this->uuid(),
-            'providerType' => ProviderType::HERE,
+            'providerType' => ProviderType::HERE->value,
             'withoutCache' => true,
         ];
 
         $dto = GeocodeParamsDTO::fromArray($data);
         $this->assertEquals($data['accountId'], $dto->getAccountId());
         $this->assertEquals($data['address'], $dto->getAddress());
-        $this->assertEquals($data['providerType'], $dto->getProviderType());
+        $this->assertEquals($data['providerType'], $dto->getProviderType()->value);
         $this->assertEquals($data['withoutCache'], $dto->withoutCache());
     }
 
@@ -49,7 +48,7 @@ class GeocodeParamsDTOTest extends TestCase
         $data = [
             'accountId' => $this->uuid(),
             'address' => $this->uuid(),
-            'providerType' => ProviderType::HERE,
+            'providerType' => ProviderType::HERE->value,
             'withoutCache' => true,
         ];
 
@@ -58,5 +57,22 @@ class GeocodeParamsDTOTest extends TestCase
         $this->assertEquals($data['withoutCache'], $requestData['withoutCache']);
         $this->assertEquals($data['address'], $requestData['address']);
         $this->assertEquals(ProviderType::HERE->value, $requestData['provider']);
+    }
+
+    public function testCreateNewObjectFromSelf(): void
+    {
+        $data = [
+            'accountId' => $this->uuid(),
+            'address' => $this->uuid(),
+            'providerType' => ProviderType::HERE->value,
+            'withoutCache' => true,
+        ];
+
+        $dto = GeocodeParamsDTO::fromArray($data);
+        $dto = GeocodeParamsDTO::fromArray($dto->toArray());
+        $this->assertEquals($data['accountId'], $dto->getAccountId());
+        $this->assertEquals($data['address'], $dto->getAddress());
+        $this->assertEquals($data['providerType'], $dto->getProviderType()->value);
+        $this->assertEquals($data['withoutCache'], $dto->withoutCache());
     }
 }

@@ -5,8 +5,7 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace App\DTO\Result;
-
+namespace Tests\App\DTO\Result;
 
 use Dotsplatform\LocationsApiSdk\DTO\ProviderType;
 use Dotsplatform\LocationsApiSdk\DTO\Results\ReverseGeocodeResultDTO;
@@ -63,5 +62,24 @@ class ReverseGeocodeResultDTOTest extends TestCase
 
         $dto = ReverseGeocodeResultDTO::fromArray($data);
         $this->assertFalse($dto->isValid());
+    }
+
+    public function testCreateNewObjectFromSelf(): void
+    {
+        $data = [
+            'provider' => ProviderType::GOOGLE->value,
+            'address' => 'address',
+            'country' => 'country',
+            'city' => 'city',
+            'city_id' => 'city_id',
+            'street' => 'street',
+            'number' => 'number',
+        ];
+
+        $dto = ReverseGeocodeResultDTO::fromArray(
+            ReverseGeocodeResultDTO::fromArray($data)->toArray(),
+        );
+
+        $this->assertEquals($data['address'], $dto->getAddress());
     }
 }

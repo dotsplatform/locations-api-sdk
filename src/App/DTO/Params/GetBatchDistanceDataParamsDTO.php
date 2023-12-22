@@ -15,6 +15,13 @@ class GetBatchDistanceDataParamsDTO extends DTO
 
     protected GetBatchDistanceDataParamsList $items;
 
+    public static function fromArray(array $data): static
+    {
+        $data['items'] = GetBatchDistanceDataParamsList::fromArray($data['items'] ?? []);
+
+        return parent::fromArray($data);
+    }
+
     public function toRequestData(): array
     {
         $data = [];

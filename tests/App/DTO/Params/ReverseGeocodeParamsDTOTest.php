@@ -5,8 +5,7 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace App\DTO\Params;
-
+namespace Tests\App\DTO\Params;
 
 use Dotsplatform\LocationsApiSdk\DTO\Params\ReverseGeocodeParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\ProviderType;
@@ -70,5 +69,24 @@ class ReverseGeocodeParamsDTOTest extends TestCase
         $this->assertEquals($data['position']['latitude'], $requestData['latitude']);
         $this->assertEquals($data['position']['longitude'], $requestData['longitude']);
         $this->assertEquals($data['withoutCache'], $requestData['withoutCache']);
+    }
+
+    public function testCreateNewObjectFromSelf(): void
+    {
+        $data = [
+            'accountId' => $this->uuid(),
+            'providerType' => ProviderType::GOOGLE->value,
+            'position' => [
+                'latitude' => 1,
+                'longitude' => 2,
+            ],
+            'withoutCache' => true,
+        ];
+
+        $dto = ReverseGeocodeParamsDTO::fromArray(
+            ReverseGeocodeParamsDTO::fromArray($data)->toArray(),
+        );
+
+        $this->assertEquals($data['accountId'], $dto->getAccountId());
     }
 }

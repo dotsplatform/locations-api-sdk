@@ -5,8 +5,7 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace App\DTO\Result;
-
+namespace Tests\App\DTO\Result;
 
 use Dotsplatform\LocationsApiSdk\DTO\Results\DistanceResults;
 use Dotsplatform\LocationsApiSdk\DTO\TransportType;
@@ -78,6 +77,34 @@ class DistanceResultsTest extends TestCase
         $this->assertEquals(
             $data[TransportType::BICYCLE->value]['duration'],
             $bicycleDistanceResult->getDuration(),
+        );
+    }
+
+    public function testCreateNewObjectFromSelf(): void
+    {
+        $data = [
+            TransportType::CAR->value => [
+                'distance' => 1,
+                'duration' => 2,
+            ],
+            TransportType::BICYCLE->value => [
+                'distance' => 3,
+                'duration' => 4,
+            ],
+            TransportType::PEDESTRIAN->value => [
+                'distance' => 5,
+                'duration' => 6,
+            ],
+        ];
+
+        $list = DistanceResults::fromArray(
+            DistanceResults::fromArray($data)->toArray(),
+        );
+
+        $bicycleDistanceResult = $list->get(TransportType::BICYCLE->value);
+        $this->assertEquals(
+            $data[TransportType::BICYCLE->value]['distance'],
+            $bicycleDistanceResult->getDistance(),
         );
     }
 }

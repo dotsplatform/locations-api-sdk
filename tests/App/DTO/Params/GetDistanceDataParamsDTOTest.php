@@ -5,8 +5,7 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace App\DTO\Params;
-
+namespace Tests\App\DTO\Params;
 
 use Dotsplatform\LocationsApiSdk\DTO\Params\GetDistanceDataParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\TransportType;
@@ -66,5 +65,34 @@ class GetDistanceDataParamsDTOTest extends TestCase
         $this->assertEquals($data['destination']['latitude'], $requestData['toLatitude']);
         $this->assertEquals($data['destination']['longitude'], $requestData['toLongitude']);
         $this->assertEquals($data['transportTypes'], $requestData['transportTypes']);
+    }
+
+    public function testCreateNewObjectFromSelf(): void
+    {
+        $data = [
+            'accountId' => $this->uuid(),
+            'source' => [
+                'latitude' => 1,
+                'longitude' => 2,
+            ],
+            'destination' => [
+                'latitude' => 3,
+                'longitude' => 4,
+            ],
+            'transportTypes' => [
+                TransportType::BICYCLE->value,
+                TransportType::PEDESTRIAN->value,
+            ],
+        ];
+
+        $dto = GetDistanceDataParamsDTO::fromArray(
+            GetDistanceDataParamsDTO::fromArray($data)->toArray(),
+        );
+
+        $this->assertEquals($data['source']['latitude'], $dto->getSource()->getLatitude());
+        $this->assertEquals($data['source']['longitude'], $dto->getSource()->getLongitude());
+        $this->assertEquals($data['destination']['latitude'], $dto->getDestination()->getLatitude());
+        $this->assertEquals($data['destination']['longitude'], $dto->getDestination()->getLongitude());
+        $this->assertEquals($data['transportTypes'], $dto->getTransportTypes());
     }
 }

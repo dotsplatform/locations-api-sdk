@@ -7,13 +7,12 @@
 
 namespace Dotsplatform\LocationsApiSdk\DTO\Params;
 
-use Dots\Data\FromArrayable;
 use Illuminate\Support\Collection;
 
 /**
  * @extends Collection<string, GetBatchDistanceDataParamsDTO>
  */
-class GetBatchDistanceDataParamsList extends Collection implements FromArrayable
+class GetBatchDistanceDataParamsList extends Collection
 {
     public static function fromArray(array $data): static
     {

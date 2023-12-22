@@ -18,6 +18,13 @@ class CheckPositionInPolygonParamsDTO extends DTO
 
     protected array $polygon;
 
+    public static function fromArray(array $data): static
+    {
+        $data['position'] = Position::fromArray($data['position'] ?? []);
+
+        return parent::fromArray($data);
+    }
+
     public function toRequestData(): array
     {
         return [

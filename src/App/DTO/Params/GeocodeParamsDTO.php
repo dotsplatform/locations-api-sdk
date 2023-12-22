@@ -20,6 +20,23 @@ class GeocodeParamsDTO extends DTO
 
     protected bool $withoutCache = false;
 
+    public static function fromArray(array $data): static
+    {
+        if (! empty($data['providerType'])) {
+            $data['providerType'] = ProviderType::from($data['providerType']);
+        }
+
+        return parent::fromArray($data);
+    }
+
+    public function toArray(): array
+    {
+        $data = parent::toArray();
+        $data['providerType'] = $this->getProviderType()?->value;
+
+        return $data;
+    }
+
     public function toRequestData(): array
     {
         return [

@@ -18,6 +18,13 @@ class UpdateGeocodeResultParamsDTO extends DTO
 
     protected Position $position;
 
+    public static function fromArray(array $data): static
+    {
+        $data['position'] = Position::fromArray($data['position'] ?? []);
+
+        return parent::fromArray($data);
+    }
+
     public function toRequestData(): array
     {
         return [

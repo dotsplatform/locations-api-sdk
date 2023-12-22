@@ -5,8 +5,7 @@
  * @author    Oleksandr Polosmak <o.polosmak@dotsplatform.com>
  */
 
-namespace App\DTO\Result;
-
+namespace Tests\App\DTO\Result;
 
 use Dotsplatform\LocationsApiSdk\DTO\ProviderType;
 use Dotsplatform\LocationsApiSdk\DTO\Results\GeocodeResultDTO;
@@ -66,5 +65,22 @@ class GeocodeResultDTOTest extends TestCase
 
         $dto = GeocodeResultDTO::fromArray($data);
         $this->assertFalse($dto->isValid());
+    }
+
+    public function testCreateNewObjectFromSelf(): void
+    {
+        $data = [
+            'provider' => ProviderType::GOOGLE->value,
+            'position' => [
+                'latitude' => 1,
+                'longitude' => 2,
+            ],
+        ];
+
+        $dto = GeocodeResultDTO::fromArray(
+            GeocodeResultDTO::fromArray($data)->toArray(),
+        );
+
+        $this->assertEquals($data['provider'], $dto->getProvider()->value);
     }
 }
