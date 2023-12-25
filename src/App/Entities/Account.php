@@ -20,15 +20,17 @@ class Account extends Entity
 
     protected ProviderType $geoPositionProviderType;
 
-    protected ProviderType $autocompleteProviderType;
+    protected ?ProviderType $autocompleteProviderType;
 
     protected ProviderType $routeDistancesProviderType;
 
     public static function fromArray(array $data): static
     {
         $data['geoPositionProviderType'] = ProviderType::from($data['geoPositionProviderType']);
-        $data['autocompleteProviderType'] = ProviderType::from($data['autocompleteProviderType']);
         $data['routeDistancesProviderType'] = ProviderType::from($data['routeDistancesProviderType']);
+        if (!empty($data['autocompleteProviderType'])) {
+            $data['autocompleteProviderType'] = ProviderType::from($data['autocompleteProviderType']);
+        }
 
         return parent::fromArray($data);
     }
@@ -37,7 +39,7 @@ class Account extends Entity
     {
         $data = parent::toArray();
         $data['geoPositionProviderType'] = $this->getGeoPositionProviderType()->value;
-        $data['autocompleteProviderType'] = $this->getAutocompleteProviderType()->value;
+        $data['autocompleteProviderType'] = $this->getAutocompleteProviderType()?->value;
         $data['routeDistancesProviderType'] = $this->getRouteDistancesProviderType()->value;
 
         return $data;
@@ -48,7 +50,7 @@ class Account extends Entity
         return $this->geoPositionProviderType;
     }
 
-    public function getAutocompleteProviderType(): ProviderType
+    public function getAutocompleteProviderType(): ?ProviderType
     {
         return $this->autocompleteProviderType;
     }

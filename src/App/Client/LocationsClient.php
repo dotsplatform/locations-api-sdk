@@ -15,6 +15,7 @@ use Dotsplatform\LocationsApiSdk\DTO\Params\GetDistanceDataParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\ReverseGeocodeParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\StoreProviderDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\UpdateGeocodeResultParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Results\AutocompleteResponseDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Results\BatchDistanceResults;
 use Dotsplatform\LocationsApiSdk\DTO\Results\DistanceResults;
 use Dotsplatform\LocationsApiSdk\DTO\Results\GeocodeResultDTO;
@@ -35,6 +36,8 @@ interface LocationsClient
     public function findGoogleProvider(string $accountId): ?Provider;
 
     public function findProvider(string $accountId, string $providerType): ?Provider;
+
+    public function autoCompleteData(string $accountId): AutocompleteResponseDTO;
 
     public function geocode(GeocodeParamsDTO $dto): GeocodeResultDTO;
 

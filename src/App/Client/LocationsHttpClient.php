@@ -16,6 +16,7 @@ use Dotsplatform\LocationsApiSdk\DTO\Params\ReverseGeocodeParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\StoreProviderDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\UpdateGeocodeResultParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\ProviderType;
+use Dotsplatform\LocationsApiSdk\DTO\Results\AutocompleteResponseDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Results\BatchDistanceResults;
 use Dotsplatform\LocationsApiSdk\DTO\Results\DistanceResults;
 use Dotsplatform\LocationsApiSdk\DTO\Results\GeocodeResultDTO;
@@ -34,6 +35,8 @@ class LocationsHttpClient implements LocationsClient
     private const STORE_ACCOUNT_URL_TEMPLATE = '/accounts';
 
     private const SHOW_PROVIDER_URL_TEMPLATE = '/accounts/%s/providers/%s';
+
+    private const SHOW_AUTOCOMPLETE_DATA = '/accounts/%s/providers/autocomplete-data';
 
     private const STORE_PROVIDER_URL_TEMPLATE = '/accounts/%s/providers/%s';
 
@@ -115,8 +118,7 @@ class LocationsHttpClient implements LocationsClient
             $providerType,
         ]);
         try {
-            $response = $this->makeClient()->get($url, [
-            ]);
+            $response = $this->makeClient()->get($url);
         } catch (Exception|GuzzleException) {
             return null;
         }
@@ -126,6 +128,24 @@ class LocationsHttpClient implements LocationsClient
         }
 
         return Provider::fromArray($data);
+    }
+
+    public function autoCompleteData(string $accountId): AutocompleteResponseDTO
+    {
+        $url = $this->generateUrl(self::SHOW_AUTOCOMPLETE_DATA, [
+            $accountId,
+        ]);
+        try {
+            $response = $this->makeClient()->get($url);
+        } catch (Exception|GuzzleException) {
+            return AutocompleteResponseDTO::empty();
+        }
+        $data = $this->decodeResponse($response);
+        if (empty($data)) {
+            return AutocompleteResponseDTO::empty();
+        }
+
+        return AutocompleteResponseDTO::fromArray($data);
     }
 
     public function geocode(GeocodeParamsDTO $dto): GeocodeResultDTO

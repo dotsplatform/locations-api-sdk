@@ -35,6 +35,21 @@ class AccountTest extends TestCase
         $this->assertEquals($data['routeDistancesProviderType'], $dto->getRouteDistancesProviderType()->value);
     }
 
+    public function testAutocompleteProviderTypeIsNullByDefault(): void
+    {
+        $data = [
+            'id' => $this->uuid(),
+            'name' => $this->uuid(),
+            'region' => $this->uuid(),
+            'geoPositionProviderType' => ProviderType::HERE->value,
+            'routeDistancesProviderType' => ProviderType::GOOGLE->value,
+        ];
+
+        $dto = Account::fromArray($data);
+
+        $this->assertNull($dto->getAutocompleteProviderType());
+    }
+
     public function testCreateNewObjectFromSelf(): void
     {
         $data = [
