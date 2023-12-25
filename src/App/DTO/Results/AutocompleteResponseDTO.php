@@ -7,7 +7,6 @@
 
 namespace Dotsplatform\LocationsApiSdk\DTO\Results;
 
-
 use Dots\Data\DTO;
 use Dotsplatform\LocationsApiSdk\DTO\ProviderType;
 
@@ -21,7 +20,7 @@ class AutocompleteResponseDTO extends DTO
 
     public static function fromArray(array $data): static
     {
-        if (!empty($data['provider'])) {
+        if (! empty($data['provider'])) {
             $data['provider'] = ProviderType::from($data['provider']);
         }
 

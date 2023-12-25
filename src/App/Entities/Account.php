@@ -28,7 +28,7 @@ class Account extends Entity
     {
         $data['geoPositionProviderType'] = ProviderType::from($data['geoPositionProviderType']);
         $data['routeDistancesProviderType'] = ProviderType::from($data['routeDistancesProviderType']);
-        if (!empty($data['autocompleteProviderType'])) {
+        if (! empty($data['autocompleteProviderType'])) {
             $data['autocompleteProviderType'] = ProviderType::from($data['autocompleteProviderType']);
         }
 
