@@ -106,7 +106,7 @@ class LocationsHttpClient implements LocationsClient
     public function findHereProvider(string $accountId): ?HereProvider
     {
         $provider = $this->findProvider($accountId, ProviderType::HERE->value);
-        if (!$provider) {
+        if (! $provider) {
             return null;
         }
 
@@ -115,8 +115,8 @@ class LocationsHttpClient implements LocationsClient
 
     public function findGoogleProvider(string $accountId): ?GoogleProvider
     {
-        $provider =  $this->findProvider($accountId, ProviderType::GOOGLE->value);
-        if (!$provider) {
+        $provider = $this->findProvider($accountId, ProviderType::GOOGLE->value);
+        if (! $provider) {
             return null;
         }
 
