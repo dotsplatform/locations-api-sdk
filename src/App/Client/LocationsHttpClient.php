@@ -22,6 +22,8 @@ use Dotsplatform\LocationsApiSdk\DTO\Results\DistanceResults;
 use Dotsplatform\LocationsApiSdk\DTO\Results\GeocodeResultDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Results\ReverseGeocodeResultDTO;
 use Dotsplatform\LocationsApiSdk\Entities\Account;
+use Dotsplatform\LocationsApiSdk\Entities\GoogleProvider;
+use Dotsplatform\LocationsApiSdk\Entities\HereProvider;
 use Dotsplatform\LocationsApiSdk\Entities\Provider;
 use Exception;
 use GuzzleHttp\Client;
@@ -101,14 +103,24 @@ class LocationsHttpClient implements LocationsClient
         }
     }
 
-    public function findHereProvider(string $accountId): ?Provider
+    public function findHereProvider(string $accountId): ?HereProvider
     {
-        return $this->findProvider($accountId, ProviderType::HERE->value);
+        $provider = $this->findProvider($accountId, ProviderType::HERE->value);
+        if (!$provider) {
+            return null;
+        }
+
+        return HereProvider::fromProvider($provider);
     }
 
-    public function findGoogleProvider(string $accountId): ?Provider
+    public function findGoogleProvider(string $accountId): ?GoogleProvider
     {
-        return $this->findProvider($accountId, ProviderType::GOOGLE->value);
+        $provider =  $this->findProvider($accountId, ProviderType::GOOGLE->value);
+        if (!$provider) {
+            return null;
+        }
+
+        return GoogleProvider::fromProvider($provider);
     }
 
     public function findProvider(string $accountId, string $providerType): ?Provider
