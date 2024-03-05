@@ -216,7 +216,7 @@ class LocationsHttpClient implements LocationsClient
         ]);
 
         try {
-            $this->makeClient()->get($url, [
+            $this->makeClient()->put($url, [
                 'json' => $dto->toRequestData(),
             ]);
         } catch (Exception|GuzzleException) {
