@@ -21,6 +21,7 @@ use Dotsplatform\LocationsApiSdk\DTO\Results\DistanceResults;
 use Dotsplatform\LocationsApiSdk\DTO\Results\GeocodeResultDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Results\ReverseGeocodeResultDTO;
 use Dotsplatform\LocationsApiSdk\Entities\Account;
+use Dotsplatform\LocationsApiSdk\Entities\City;
 use Dotsplatform\LocationsApiSdk\Entities\GoogleProvider;
 use Dotsplatform\LocationsApiSdk\Entities\HereProvider;
 use Dotsplatform\LocationsApiSdk\Entities\Provider;
@@ -30,6 +31,8 @@ interface LocationsClient
     public function storeAccount(Account $account): void;
 
     public function findAccount(string $accountId): ?Account;
+
+    public function storeCity(City $city): void;
 
     public function storeProvider(StoreProviderDTO $dto): void;
 

@@ -22,6 +22,7 @@ use Dotsplatform\LocationsApiSdk\DTO\Results\DistanceResults;
 use Dotsplatform\LocationsApiSdk\DTO\Results\GeocodeResultDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Results\ReverseGeocodeResultDTO;
 use Dotsplatform\LocationsApiSdk\Entities\Account;
+use Dotsplatform\LocationsApiSdk\Entities\City;
 use Dotsplatform\LocationsApiSdk\Entities\GoogleProvider;
 use Dotsplatform\LocationsApiSdk\Entities\HereProvider;
 use Dotsplatform\LocationsApiSdk\Entities\Provider;
@@ -35,6 +36,8 @@ class LocationsHttpClient implements LocationsClient
     private const SHOW_ACCOUNT_URL_TEMPLATE = '/accounts/%s';
 
     private const STORE_ACCOUNT_URL_TEMPLATE = '/accounts';
+
+    private const STORE_CITY_URL_TEMPLATE = '/accounts/%s/cities';
 
     private const SHOW_PROVIDER_URL_TEMPLATE = '/accounts/%s/providers/%s';
 
@@ -86,6 +89,20 @@ class LocationsHttpClient implements LocationsClient
         }
 
         return Account::fromArray($data);
+    }
+
+    public function storeCity(City $city): void
+    {
+        $url = $this->generateUrl(self::STORE_CITY_URL_TEMPLATE, [
+            $city->getAccountId(),
+        ]);
+        try {
+            $this->makeClient()->post($url, [
+                'json' => $city->toArray(),
+            ]);
+        } catch (Exception|GuzzleException) {
+            return;
+        }
     }
 
     public function storeProvider(StoreProviderDTO $dto): void
