@@ -34,6 +34,8 @@ interface LocationsClient
 
     public function storeCity(City $city): void;
 
+    public function deleteCity(string $accountId, string $id): void;
+
     public function storeProvider(StoreProviderDTO $dto): void;
 
     public function findHereProvider(string $accountId): ?HereProvider;

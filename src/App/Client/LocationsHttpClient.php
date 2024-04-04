@@ -39,6 +39,8 @@ class LocationsHttpClient implements LocationsClient
 
     private const STORE_CITY_URL_TEMPLATE = '/accounts/%s/cities';
 
+    private const DELETE_CITY_URL_TEMPLATE = '/accounts/%s/cities/%s';
+
     private const SHOW_PROVIDER_URL_TEMPLATE = '/accounts/%s/providers/%s';
 
     private const SHOW_AUTOCOMPLETE_DATA = '/accounts/%s/providers/autocomplete-data';
@@ -100,6 +102,19 @@ class LocationsHttpClient implements LocationsClient
             $this->makeClient()->post($url, [
                 'json' => $city->toArray(),
             ]);
+        } catch (Exception|GuzzleException) {
+            return;
+        }
+    }
+
+    public function deleteCity(string $accountId, string $id): void
+    {
+        $url = $this->generateUrl(self::DELETE_CITY_URL_TEMPLATE, [
+            $accountId,
+            $id,
+        ]);
+        try {
+            $this->makeClient()->delete($url);
         } catch (Exception|GuzzleException) {
             return;
         }
