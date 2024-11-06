@@ -11,4 +11,5 @@ enum ProviderType: string
 {
     case HERE = 'here';
     case GOOGLE = 'google';
+    case BY_AIR = 'by_air';
 }
