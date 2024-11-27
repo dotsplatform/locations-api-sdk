@@ -26,6 +26,7 @@ use Dotsplatform\LocationsApiSdk\Entities\City;
 use Dotsplatform\LocationsApiSdk\Entities\GoogleProvider;
 use Dotsplatform\LocationsApiSdk\Entities\HereProvider;
 use Dotsplatform\LocationsApiSdk\Entities\Provider;
+use Dotsplatform\LocationsApiSdk\Entities\VisicomProvider;
 use Exception;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
@@ -153,6 +154,16 @@ class LocationsHttpClient implements LocationsClient
         }
 
         return GoogleProvider::fromProvider($provider);
+    }
+
+    public function findVisicomProvider(string $accountId): ?VisicomProvider
+    {
+        $provider = $this->findProvider($accountId, ProviderType::VISICOM->value);
+        if (! $provider) {
+            return null;
+        }
+
+        return VisicomProvider::fromProvider($provider);
     }
 
     public function findProvider(string $accountId, string $providerType): ?Provider
