@@ -25,6 +25,7 @@ use Dotsplatform\LocationsApiSdk\Entities\City;
 use Dotsplatform\LocationsApiSdk\Entities\GoogleProvider;
 use Dotsplatform\LocationsApiSdk\Entities\HereProvider;
 use Dotsplatform\LocationsApiSdk\Entities\Provider;
+use Dotsplatform\LocationsApiSdk\Entities\VisicomProvider;
 
 interface LocationsClient
 {
@@ -41,6 +42,8 @@ interface LocationsClient
     public function findHereProvider(string $accountId): ?HereProvider;
 
     public function findGoogleProvider(string $accountId): ?GoogleProvider;
+
+    public function findVisicomProvider(string $accountId): ?VisicomProvider;
 
     public function findProvider(string $accountId, string $providerType): ?Provider;
 
