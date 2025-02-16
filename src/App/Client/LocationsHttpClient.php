@@ -172,15 +172,13 @@ class LocationsHttpClient implements LocationsClient
         }
     }
 
-    public function deleteLocation(string $id, StoreLocationDTO $dto): void
+    public function deleteLocation(string $id): void
     {
         $url = $this->generateUrl(self::DELETE_LOCATIONS_URL_TEMPLATE, [
             $id,
         ]);
         try {
-            $this->makeClient()->delete($url, [
-                'json' => $dto->toArray(),
-            ]);
+            $this->makeClient()->delete($url);
         } catch (Exception|GuzzleException) {
             return;
         }
