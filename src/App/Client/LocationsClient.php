@@ -7,6 +7,10 @@
 
 namespace Dotsplatform\LocationsApiSdk\Client;
 
+use App\Services\Locations\DTO\SearchLocationsDTO;
+use App\Services\Locations\DTO\StoreLocationDTO;
+use App\Services\Locations\Entities\Location;
+use App\Services\Locations\Entities\LocationsList;
 use Dotsplatform\LocationsApiSdk\DTO\Params\CheckPositionInPolygonParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\FilterPolygonsForPositionParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\GeocodeParamsDTO;
@@ -32,6 +36,16 @@ interface LocationsClient
     public function storeAccount(Account $account): void;
 
     public function findAccount(string $accountId): ?Account;
+
+    public function searchLocations(SearchLocationsDTO $dto): LocationsList;
+
+    public function findLocation(string $id): ?Location;
+
+    public function createLocation(StoreLocationDTO $dto): void;
+
+    public function updateLocation(string $id, StoreLocationDTO $dto): void;
+
+    public function deleteLocation(string $id): void;
 
     public function storeCity(City $city): void;
 
