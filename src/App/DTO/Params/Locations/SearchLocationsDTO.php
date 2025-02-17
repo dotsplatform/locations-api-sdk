@@ -6,11 +6,11 @@
  * @author    Bogdan Mamontov <bohdan.mamontov@dotsplatform.com>
  */
 
-namespace App\Services\Locations\DTO;
+namespace Dotsplatform\LocationsApiSdk\DTO\Params\Locations;
 
-use App\Services\Locations\Enums\LocationSource;
 use Dots\Data\DTO;
 use Dots\Distance\Position;
+use Dotsplatform\LocationsApiSdk\DTO\LocationSource;
 
 class SearchLocationsDTO extends DTO
 {
