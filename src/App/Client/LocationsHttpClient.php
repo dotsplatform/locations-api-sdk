@@ -7,8 +7,6 @@
 
 namespace Dotsplatform\LocationsApiSdk\Client;
 
-use App\Services\Locations\Entities\Location;
-use App\Services\Locations\Entities\LocationsList;
 use Dotsplatform\LocationsApiSdk\DTO\Params\CheckPositionInPolygonParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\FilterPolygonsForPositionParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\GeocodeParamsDTO;
@@ -29,6 +27,8 @@ use Dotsplatform\LocationsApiSdk\Entities\Account;
 use Dotsplatform\LocationsApiSdk\Entities\City;
 use Dotsplatform\LocationsApiSdk\Entities\GoogleProvider;
 use Dotsplatform\LocationsApiSdk\Entities\HereProvider;
+use Dotsplatform\LocationsApiSdk\Entities\Locations\Location;
+use Dotsplatform\LocationsApiSdk\Entities\Locations\LocationsList;
 use Dotsplatform\LocationsApiSdk\Entities\Provider;
 use Dotsplatform\LocationsApiSdk\Entities\VisicomProvider;
 use Exception;
