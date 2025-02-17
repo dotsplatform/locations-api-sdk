@@ -6,11 +6,11 @@
  * @author    Bogdan Mamontov <bohdan.mamontov@dotsplatform.com>
  */
 
-namespace App\Services\Locations\Entities;
+namespace Dotsplatform\LocationsApiSdk\Entities\Locations;
 
-use App\Services\Locations\Enums\LocationSource;
 use Dots\Data\Entity;
 use Dots\Distance\Position;
+use Dotsplatform\LocationsApiSdk\DTO\LocationSource;
 
 class Location extends Entity
 {

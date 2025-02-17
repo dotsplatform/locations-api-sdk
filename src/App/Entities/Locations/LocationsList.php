@@ -6,15 +6,14 @@
  * @author    Bogdan Mamontov <bohdan.mamontov@dotsplatform.com>
  */
 
-namespace App\Services\Locations\Entities;
+namespace Dotsplatform\LocationsApiSdk\Entities\Locations;
 
-use Dots\Data\FromArrayable;
 use Illuminate\Support\Collection;
 
 /**
  * @extends Collection<int, Location>
  */
-class LocationsList extends Collection implements FromArrayable
+class LocationsList extends Collection
 {
     public static function fromArray(array $data): static
     {
