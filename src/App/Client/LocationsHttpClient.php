@@ -7,8 +7,6 @@
 
 namespace Dotsplatform\LocationsApiSdk\Client;
 
-use App\Services\Locations\DTO\SearchLocationsDTO;
-use App\Services\Locations\DTO\StoreLocationDTO;
 use App\Services\Locations\Entities\Location;
 use App\Services\Locations\Entities\LocationsList;
 use Dotsplatform\LocationsApiSdk\DTO\Params\CheckPositionInPolygonParamsDTO;
@@ -16,6 +14,8 @@ use Dotsplatform\LocationsApiSdk\DTO\Params\FilterPolygonsForPositionParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\GeocodeParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\GetBatchDistanceDataParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\GetDistanceDataParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\Locations\SearchLocationsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\Locations\StoreLocationDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\ReverseGeocodeParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\StoreProviderDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\UpdateGeocodeResultParamsDTO;
