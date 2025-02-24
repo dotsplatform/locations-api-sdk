@@ -11,9 +11,11 @@ use Dots\Data\Entity;
 
 class VisicomProvider extends Entity
 {
-    protected array $geoPositionApiKeys;
+    protected array $geoPositionApiKeys = [];
 
-    protected array $routeApiKeys;
+    protected array $routeApiKeys = [];
+
+    protected array $mapsApiKeys = [];
 
     public static function fromProvider(Provider $provider): static
     {
@@ -28,5 +30,10 @@ class VisicomProvider extends Entity
     public function getRouteApiKeys(): array
     {
         return $this->routeApiKeys;
+    }
+
+    public function getMapsApiKeys(): array
+    {
+        return $this->mapsApiKeys;
     }
 }
