@@ -11,11 +11,13 @@ use Dots\Data\Entity;
 
 class HereProvider extends Entity
 {
-    protected array $geoPositionApiKeys;
+    protected array $geoPositionApiKeys = [];
 
-    protected array $routeApiKeys;
+    protected array $routeApiKeys = [];
 
-    protected array $autocompleteApiKeys;
+    protected array $autocompleteApiKeys = [];
+
+    protected array $mapsApiKeys = [];
 
     public static function fromProvider(Provider $provider): static
     {
@@ -36,4 +38,10 @@ class HereProvider extends Entity
     {
         return $this->autocompleteApiKeys;
     }
+
+    public function getMapsApiKeys(): array
+    {
+        return $this->mapsApiKeys;
+    }
+
 }
