@@ -25,6 +25,7 @@ use Dotsplatform\LocationsApiSdk\DTO\Results\GeocodeResultDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Results\ReverseGeocodeResultDTO;
 use Dotsplatform\LocationsApiSdk\Entities\Account;
 use Dotsplatform\LocationsApiSdk\Entities\City;
+use Dotsplatform\LocationsApiSdk\Entities\GeoCity;
 use Dotsplatform\LocationsApiSdk\Entities\GoogleProvider;
 use Dotsplatform\LocationsApiSdk\Entities\HereProvider;
 use Dotsplatform\LocationsApiSdk\Entities\Locations\Location;
@@ -41,6 +42,8 @@ class LocationsHttpClient implements LocationsClient
     private const SHOW_ACCOUNT_URL_TEMPLATE = '/accounts/%s';
 
     private const STORE_ACCOUNT_URL_TEMPLATE = '/accounts';
+
+    private const STORE_GEO_CITY_URL_TEMPLATE = '/geo-cities';
 
     private const SEARCH_LOCATIONS_URL_TEMPLATE = '/locations';
 
@@ -108,6 +111,17 @@ class LocationsHttpClient implements LocationsClient
         return Account::fromArray($data);
     }
 
+    public function storeGeoCity(GeoCity $geoCity): void
+    {
+        try {
+            $this->makeClient()->post(self::STORE_GEO_CITY_URL_TEMPLATE, [
+                'json' => $geoCity->toArray(),
+            ]);
+        } catch (Exception|GuzzleException) {
+            return;
+        }
+    }
+
     public function searchLocations(SearchLocationsDTO $dto): LocationsList
     {
         $url = $this->generateUrl(self::SEARCH_LOCATIONS_URL_TEMPLATE);
@@ -146,30 +160,43 @@ class LocationsHttpClient implements LocationsClient
         return Location::fromArray($data);
     }
 
-    public function createLocation(StoreLocationDTO $dto): void
+    public function createLocation(StoreLocationDTO $dto): ?string
     {
         $url = $this->generateUrl(self::CREATE_LOCATIONS_URL_TEMPLATE);
         try {
-            $this->makeClient()->post($url, [
+            $response = $this->makeClient()->post($url, [
                 'json' => $dto->toArray(),
             ]);
         } catch (Exception|GuzzleException) {
-            return;
+            return null;
         }
+        $data = $this->decodeResponse($response);
+        if (empty($data)) {
+            return null;
+        }
+
+        return $data['id'] ?? null;
     }
 
-    public function updateLocation(string $id, StoreLocationDTO $dto): void
+    public function updateLocation(string $id, StoreLocationDTO $dto): ?string
     {
         $url = $this->generateUrl(self::UPDATE_LOCATIONS_URL_TEMPLATE, [
             $id,
         ]);
         try {
-            $this->makeClient()->put($url, [
+            $response = $this->makeClient()->put($url, [
                 'json' => $dto->toArray(),
             ]);
         } catch (Exception|GuzzleException) {
-            return;
+            return null;
         }
+
+        $data = $this->decodeResponse($response);
+        if (empty($data)) {
+            return null;
+        }
+
+        return $data['id'] ?? null;
     }
 
     public function deleteLocation(string $id): void

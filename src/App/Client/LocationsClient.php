@@ -24,6 +24,7 @@ use Dotsplatform\LocationsApiSdk\DTO\Results\GeocodeResultDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Results\ReverseGeocodeResultDTO;
 use Dotsplatform\LocationsApiSdk\Entities\Account;
 use Dotsplatform\LocationsApiSdk\Entities\City;
+use Dotsplatform\LocationsApiSdk\Entities\GeoCity;
 use Dotsplatform\LocationsApiSdk\Entities\GoogleProvider;
 use Dotsplatform\LocationsApiSdk\Entities\HereProvider;
 use Dotsplatform\LocationsApiSdk\Entities\Locations\Location;
@@ -37,13 +38,15 @@ interface LocationsClient
 
     public function findAccount(string $accountId): ?Account;
 
+    public function storeGeoCity(GeoCity $geoCity): void;
+
     public function searchLocations(SearchLocationsDTO $dto): LocationsList;
 
     public function findLocation(string $id): ?Location;
 
-    public function createLocation(StoreLocationDTO $dto): void;
+    public function createLocation(StoreLocationDTO $dto): ?string;
 
-    public function updateLocation(string $id, StoreLocationDTO $dto): void;
+    public function updateLocation(string $id, StoreLocationDTO $dto): ?string;
 
     public function deleteLocation(string $id): void;
 
