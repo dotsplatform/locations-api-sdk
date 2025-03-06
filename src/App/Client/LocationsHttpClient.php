@@ -113,8 +113,9 @@ class LocationsHttpClient implements LocationsClient
 
     public function storeGeoCity(GeoCity $geoCity): void
     {
+        $url = $this->generateUrl(self::STORE_GEO_CITY_URL_TEMPLATE);
         try {
-            $this->makeClient()->post(self::STORE_GEO_CITY_URL_TEMPLATE, [
+            $this->makeClient()->post($url, [
                 'json' => $geoCity->toArray(),
             ]);
         } catch (Exception|GuzzleException) {
