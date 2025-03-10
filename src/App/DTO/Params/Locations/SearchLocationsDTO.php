@@ -18,7 +18,7 @@ class SearchLocationsDTO extends DTO
 
     protected ?string $address;
 
-    protected ?Position $location;
+    protected ?Position $position;
 
     protected ?LocationSource $source;
 
@@ -30,8 +30,8 @@ class SearchLocationsDTO extends DTO
 
     public static function fromArray(array $data): static
     {
-        if (isset($data['location'])) {
-            $data['location'] = Position::fromArray($data['location']);
+        if (isset($data['position'])) {
+            $data['position'] = Position::fromArray($data['position']);
         }
 
         return parent::fromArray($data);
@@ -47,9 +47,9 @@ class SearchLocationsDTO extends DTO
         return $this->address;
     }
 
-    public function getLocation(): ?Position
+    public function getPosition(): ?Position
     {
-        return $this->location;
+        return $this->position;
     }
 
     public function getSource(): ?LocationSource

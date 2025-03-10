@@ -24,7 +24,7 @@ class Location extends Entity
 
     protected string $city;
 
-    protected ?string $street;
+    protected string $street;
 
     protected ?string $number;
 
@@ -32,7 +32,7 @@ class Location extends Entity
 
     protected LocationSource $source;
 
-    protected Position $location;
+    protected Position $position;
 
     public function getId(): string
     {
@@ -59,7 +59,7 @@ class Location extends Entity
         return $this->city;
     }
 
-    public function getStreet(): ?string
+    public function getStreet(): string
     {
         return $this->street;
     }
@@ -79,8 +79,8 @@ class Location extends Entity
         return $this->source;
     }
 
-    public function getLocation(): Position
+    public function getPosition(): Position
     {
-        return $this->location;
+        return $this->position;
     }
 }

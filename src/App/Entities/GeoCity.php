@@ -14,7 +14,7 @@ class GeoCity extends Entity
 {
     protected string $id;
 
-    protected int $geoCountryId;
+    protected string $geoCountryId;
 
     protected string $name;
 
@@ -25,7 +25,7 @@ class GeoCity extends Entity
         return $this->id;
     }
 
-    public function getGeoCountryId(): int
+    public function getGeoCountryId(): string
     {
         return $this->geoCountryId;
     }

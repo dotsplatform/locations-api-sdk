@@ -16,11 +16,9 @@ class StoreLocationDTO extends DTO
 {
     protected string $geoCityId;
 
-    protected string $address;
-
     protected string $city;
 
-    protected ?string $street;
+    protected string $street;
 
     protected ?string $number;
 
@@ -28,12 +26,12 @@ class StoreLocationDTO extends DTO
 
     protected LocationSource $source;
 
-    protected Position $location;
+    protected Position $position;
 
     public static function fromArray(array $data): static
     {
-        if (isset($data['location'])) {
-            $data['location'] = Position::fromArray($data['location']);
+        if (isset($data['position'])) {
+            $data['position'] = Position::fromArray($data['position']);
         }
 
         return parent::fromArray($data);
@@ -42,11 +40,6 @@ class StoreLocationDTO extends DTO
     public function getGeoCityId(): string
     {
         return $this->geoCityId;
-    }
-
-    public function getAddress(): string
-    {
-        return $this->address;
     }
 
     public function getCity(): string
@@ -74,8 +67,8 @@ class StoreLocationDTO extends DTO
         return $this->source;
     }
 
-    public function getLocation(): Position
+    public function getPosition(): Position
     {
-        return $this->location;
+        return $this->position;
     }
 }
