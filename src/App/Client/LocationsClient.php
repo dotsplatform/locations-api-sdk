@@ -12,6 +12,8 @@ use Dotsplatform\LocationsApiSdk\DTO\Params\FilterPolygonsForPositionParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\GeocodeParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\GetBatchDistanceDataParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\GetDistanceDataParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\Locations\SearchLocationsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\Locations\StoreLocationDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\ReverseGeocodeParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\StoreProviderDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\UpdateGeocodeResultParamsDTO;
@@ -22,8 +24,11 @@ use Dotsplatform\LocationsApiSdk\DTO\Results\GeocodeResultDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Results\ReverseGeocodeResultDTO;
 use Dotsplatform\LocationsApiSdk\Entities\Account;
 use Dotsplatform\LocationsApiSdk\Entities\City;
+use Dotsplatform\LocationsApiSdk\Entities\GeoCity;
 use Dotsplatform\LocationsApiSdk\Entities\GoogleProvider;
 use Dotsplatform\LocationsApiSdk\Entities\HereProvider;
+use Dotsplatform\LocationsApiSdk\Entities\Locations\Location;
+use Dotsplatform\LocationsApiSdk\Entities\Locations\LocationsList;
 use Dotsplatform\LocationsApiSdk\Entities\Provider;
 use Dotsplatform\LocationsApiSdk\Entities\VisicomProvider;
 
@@ -32,6 +37,18 @@ interface LocationsClient
     public function storeAccount(Account $account): void;
 
     public function findAccount(string $accountId): ?Account;
+
+    public function storeGeoCity(GeoCity $geoCity): void;
+
+    public function searchLocations(SearchLocationsDTO $dto): LocationsList;
+
+    public function findLocation(string $id): ?Location;
+
+    public function createLocation(StoreLocationDTO $dto): ?string;
+
+    public function updateLocation(string $id, StoreLocationDTO $dto): ?string;
+
+    public function deleteLocation(string $id): void;
 
     public function storeCity(City $city): void;
 

@@ -17,6 +17,8 @@ class City extends Entity
 
     protected string $name;
 
+    protected string $geoCityId;
+
     protected ?array $polygonData;
 
     public function getId(): string
@@ -32,6 +34,11 @@ class City extends Entity
     public function getName(): string
     {
         return $this->name;
+    }
+
+    public function getGeoCityId(): string
+    {
+        return $this->geoCityId;
     }
 
     public function getPolygonData(): ?array
