@@ -16,6 +16,8 @@ class SearchLocationsDTO extends DTO
 {
     protected string $geoCityId;
 
+    protected ?string $cityName;
+
     protected ?string $address;
 
     protected ?Position $position;
@@ -40,6 +42,11 @@ class SearchLocationsDTO extends DTO
     public function getGeoCityId(): string
     {
         return $this->geoCityId;
+    }
+
+    public function getCityName(): ?string
+    {
+        return $this->cityName;
     }
 
     public function getAddress(): ?string
