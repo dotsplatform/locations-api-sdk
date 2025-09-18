@@ -13,6 +13,7 @@ enum ProviderType: string
     case GOOGLE = 'google';
     case VISICOM = 'visicom';
     case BY_AIR = 'by_air';
+    case GRAPH_HOPPER = 'graph_hopper';
 
     public static function getGeocodeProviderTypes(): array
     {
@@ -30,6 +31,7 @@ enum ProviderType: string
             self::GOOGLE,
             self::VISICOM,
             self::BY_AIR,
+            self::GRAPH_HOPPER,
         ];
     }
 
