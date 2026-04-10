@@ -14,6 +14,8 @@ use Dotsplatform\LocationsApiSdk\DTO\Params\GetBatchDistanceDataParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\GetDistanceDataParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\Locations\SearchLocationsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\Locations\StoreLocationDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\RequestReports\RequestReportsFilterParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\RequestReports\RequestReportsSummaryParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\ReverseGeocodeParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\StoreProviderDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\UpdateGeocodeResultParamsDTO;
@@ -78,6 +80,10 @@ class LocationsHttpClient implements LocationsClient
     private const CHECK_COORDINATES_IN_POLYGON_URL_TEMPLATE = '/accounts/%s/coordinates-for-polygon';
 
     private const FILTER_SUITABLE_POLYGONS_URL_TEMPLATE = '/accounts/%s/filter-polygons';
+
+    private const REQUEST_REPORTS_URL = '/request-reports';
+
+    private const REQUEST_REPORTS_SUMMARY_URL = '/request-reports/summary';
 
     public function storeAccount(Account $account): void
     {
@@ -465,6 +471,38 @@ class LocationsHttpClient implements LocationsClient
         }
 
         return $this->decodeResponse($response);
+    }
+
+    public function getRequestReports(RequestReportsFilterParamsDTO $dto): array
+    {
+        $url = $this->generateUrl(self::REQUEST_REPORTS_URL);
+        try {
+            $response = $this->makeClient()->get($url, [
+                'query' => $dto->toRequestData(),
+            ]);
+        } catch (Exception|GuzzleException) {
+            return [];
+        }
+
+        $data = $this->decodeResponse($response);
+
+        return $data['data'] ?? [];
+    }
+
+    public function getRequestReportsSummary(RequestReportsSummaryParamsDTO $dto): array
+    {
+        $url = $this->generateUrl(self::REQUEST_REPORTS_SUMMARY_URL);
+        try {
+            $response = $this->makeClient()->get($url, [
+                'query' => $dto->toRequestData(),
+            ]);
+        } catch (Exception|GuzzleException) {
+            return [];
+        }
+
+        $data = $this->decodeResponse($response);
+
+        return $data['data'] ?? [];
     }
 
     private function generateUrl(string $template, array $params = []): string

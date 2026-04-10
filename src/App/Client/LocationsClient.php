@@ -14,6 +14,8 @@ use Dotsplatform\LocationsApiSdk\DTO\Params\GetBatchDistanceDataParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\GetDistanceDataParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\Locations\SearchLocationsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\Locations\StoreLocationDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\RequestReports\RequestReportsFilterParamsDTO;
+use Dotsplatform\LocationsApiSdk\DTO\Params\RequestReports\RequestReportsSummaryParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\ReverseGeocodeParamsDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\StoreProviderDTO;
 use Dotsplatform\LocationsApiSdk\DTO\Params\UpdateGeocodeResultParamsDTO;
@@ -79,4 +81,8 @@ interface LocationsClient
     public function isPositionInPolygon(CheckPositionInPolygonParamsDTO $dto): bool;
 
     public function filterSuitablePolygons(FilterPolygonsForPositionParamsDTO $dto): array;
+
+    public function getRequestReports(RequestReportsFilterParamsDTO $dto): array;
+
+    public function getRequestReportsSummary(RequestReportsSummaryParamsDTO $dto): array;
 }
