@@ -21,9 +21,8 @@ class RequestReportsFilterParamsDTO extends DTO
 
     protected string $periodType;
 
-    protected string $dateFrom;
-
-    protected string $dateTo;
+    /** @var string[] */
+    protected array $periods;
 
     public function getAccountId(): ?string
     {
@@ -50,22 +49,16 @@ class RequestReportsFilterParamsDTO extends DTO
         return $this->periodType;
     }
 
-    public function getDateFrom(): string
+    public function getPeriods(): array
     {
-        return $this->dateFrom;
-    }
-
-    public function getDateTo(): string
-    {
-        return $this->dateTo;
+        return $this->periods;
     }
 
     public function toRequestData(): array
     {
         $data = [
             'period_type' => $this->periodType,
-            'date_from' => $this->dateFrom,
-            'date_to' => $this->dateTo,
+            'periods' => $this->periods,
         ];
 
         if ($this->accountId !== null) {

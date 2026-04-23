@@ -15,9 +15,8 @@ class RequestReportsSummaryParamsDTO extends DTO
 
     protected string $periodType;
 
-    protected string $dateFrom;
-
-    protected string $dateTo;
+    /** @var string[] */
+    protected array $periods;
 
     protected string $groupBy;
 
@@ -31,14 +30,9 @@ class RequestReportsSummaryParamsDTO extends DTO
         return $this->periodType;
     }
 
-    public function getDateFrom(): string
+    public function getPeriods(): array
     {
-        return $this->dateFrom;
-    }
-
-    public function getDateTo(): string
-    {
-        return $this->dateTo;
+        return $this->periods;
     }
 
     public function getGroupBy(): string
@@ -50,8 +44,7 @@ class RequestReportsSummaryParamsDTO extends DTO
     {
         $data = [
             'period_type' => $this->periodType,
-            'date_from' => $this->dateFrom,
-            'date_to' => $this->dateTo,
+            'periods' => $this->periods,
             'group_by' => $this->groupBy,
         ];
 
