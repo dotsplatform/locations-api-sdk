@@ -21,6 +21,8 @@ class ReverseGeocodeParamsDTO extends DTO
 
     protected bool $withoutCache = false;
 
+    protected string $lang = '';
+
     public static function fromArray(array $data): static
     {
         $data['position'] = Position::fromArray($data['position'] ?? []);
@@ -46,6 +48,7 @@ class ReverseGeocodeParamsDTO extends DTO
             'providerType' => $this->getProviderType()?->value,
             'latitude' => $this->position->getLatitude(),
             'longitude' => $this->position->getLongitude(),
+            'lang' => $this->getLang(),
         ];
     }
 
@@ -67,5 +70,10 @@ class ReverseGeocodeParamsDTO extends DTO
     public function withoutCache(): bool
     {
         return $this->withoutCache;
+    }
+
+    public function getLang(): string
+    {
+        return $this->lang;
     }
 }
