@@ -26,6 +26,8 @@ class StoreLocationDTO extends DTO
 
     protected LocationSource $source;
 
+    protected string $lang = 'uk';
+
     protected Position $position;
 
     public static function fromArray(array $data): static
@@ -65,6 +67,11 @@ class StoreLocationDTO extends DTO
     public function getSource(): LocationSource
     {
         return $this->source;
+    }
+
+    public function getLang(): string
+    {
+        return $this->lang;
     }
 
     public function getPosition(): Position
