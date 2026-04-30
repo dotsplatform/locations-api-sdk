@@ -22,6 +22,8 @@ class SearchLocationsDTO extends DTO
 
     protected ?LocationSource $source;
 
+    protected ?string $lang = null;
+
     protected int $radius = 20;
 
     protected int $limit = 50;
@@ -55,6 +57,11 @@ class SearchLocationsDTO extends DTO
     public function getSource(): ?LocationSource
     {
         return $this->source;
+    }
+
+    public function getLang(): ?string
+    {
+        return $this->lang;
     }
 
     public function getRadius(): int
