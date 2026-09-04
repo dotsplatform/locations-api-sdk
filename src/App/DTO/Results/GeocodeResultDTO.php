@@ -17,6 +17,8 @@ class GeocodeResultDTO extends DTO
 
     protected ?Position $position;
 
+    protected ?int $geocodedTime = null;
+
     public static function fromArray(array $data): static
     {
         if (! empty($data['provider'])) {
@@ -40,6 +42,11 @@ class GeocodeResultDTO extends DTO
     public function getProvider(): ?ProviderType
     {
         return $this->provider;
+    }
+
+    public function getGeocodedTime(): ?int
+    {
+        return $this->geocodedTime;
     }
 
     public function getLatitude(): ?float
