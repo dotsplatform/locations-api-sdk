@@ -41,6 +41,8 @@ use Psr\Http\Message\ResponseInterface;
 
 class LocationsHttpClient implements LocationsClient
 {
+    private const INTERNAL_GATEWAY_TOKEN_HEADER = 'X-Internal-Gateway-Token';
+
     private const SHOW_ACCOUNT_URL_TEMPLATE = '/accounts/%s';
 
     private const STORE_ACCOUNT_URL_TEMPLATE = '/accounts';
@@ -518,6 +520,7 @@ class LocationsHttpClient implements LocationsClient
                 'headers' => [
                     'Accept' => 'application/json',
                     'Content-Type' => 'application/json',
+                    self::INTERNAL_GATEWAY_TOKEN_HEADER => (string) config('locations-api-sdk.locations-server.token'),
                 ],
             ],
         );
