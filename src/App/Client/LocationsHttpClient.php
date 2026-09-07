@@ -512,6 +512,16 @@ class LocationsHttpClient implements LocationsClient
         return sprintf($template, ...$params);
     }
 
+    private function getInternalGatewayToken(): string
+    {
+        $token = config('locations-api-sdk.locations-server.token');
+        if (! is_string($token)) {
+            return '';
+        }
+
+        return $token;
+    }
+
     private function makeClient(): Client
     {
         return new Client(
@@ -520,7 +530,7 @@ class LocationsHttpClient implements LocationsClient
                 'headers' => [
                     'Accept' => 'application/json',
                     'Content-Type' => 'application/json',
-                    self::INTERNAL_GATEWAY_TOKEN_HEADER => (string) config('locations-api-sdk.locations-server.token'),
+                    self::INTERNAL_GATEWAY_TOKEN_HEADER => $this->getInternalGatewayToken(),
                 ],
             ],
         );
