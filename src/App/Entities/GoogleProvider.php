@@ -19,6 +19,8 @@ class GoogleProvider extends Entity
 
     protected array $mapsApiKeys = [];
 
+    protected array $placeDetailsApiKeys = [];
+
     public static function fromProvider(Provider $provider): static
     {
         return static::fromArray($provider->getData());
@@ -42,5 +44,10 @@ class GoogleProvider extends Entity
     public function getMapsApiKeys(): array
     {
         return $this->mapsApiKeys;
+    }
+
+    public function getPlaceDetailsApiKeys(): array
+    {
+        return $this->placeDetailsApiKeys;
     }
 }
