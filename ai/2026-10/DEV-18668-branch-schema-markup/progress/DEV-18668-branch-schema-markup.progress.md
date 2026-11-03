@@ -26,3 +26,16 @@ found during locations exploration.
 ## Summary
 
 Code ready. Proposed tag: `v1.13.0` (minor, backward compatible). Not tagged.
+
+---
+
+# Plan v3 (2026-11-03)
+
+Plan v3 is in use (`plans/DEV-18668-branch-schema-markup.v3.plan.md`). Reason: SEO feedback moved
+the markup to the company Info page; the SDK place-details client is reused unchanged.
+
+- [x] 1. DTO test — run in a scratch copy (`git archive HEAD` + `composer update`, nothing written to
+  this repo; the repo `composer.lock` stays stale): `PlaceDetailsDTOTest` 2 passed.
+- [ ] 2. Release prep — tag `v1.13.0` ("place details client + Places API key list") drafted;
+  merge to master, tag and push wait for the developer's explicit approval.
+- [x] 3. Progress — recorded here.
