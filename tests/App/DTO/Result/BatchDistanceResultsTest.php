@@ -84,6 +84,41 @@ class BatchDistanceResultsTest extends TestCase
         );
     }
 
+    public function testSkipsNullItemsReturnedForFailedRoutes(): void
+    {
+        $distanceResults = DistanceResults::fromArray([
+            TransportType::CAR->value => $this->generateDistanceResult()->toArray(),
+        ]);
+
+        $list = BatchDistanceResults::fromArray([
+            'resolvedKey' => $distanceResults->toArray(),
+            'failedKey' => null,
+        ]);
+
+        $this->assertCount(1, $list);
+        $this->assertEquals(
+            $distanceResults->toArray(),
+            $list->getItemByKey('resolvedKey')->toArray(),
+        );
+        $this->assertNull($list->getItemByKey('failedKey'));
+        $this->assertFalse($list->hasItemByKey('failedKey'));
+    }
+
+    public function testGetMissingKeysReturnsKeysWithoutResults(): void
+    {
+        $list = BatchDistanceResults::fromArray([
+            'resolvedKey' => DistanceResults::fromArray([
+                TransportType::CAR->value => $this->generateDistanceResult()->toArray(),
+            ])->toArray(),
+            'failedKey' => null,
+        ]);
+
+        $this->assertEquals(
+            ['failedKey', 'notReturnedKey'],
+            $list->getMissingKeys(['resolvedKey', 'failedKey', 'notReturnedKey']),
+        );
+    }
+
     private function generateDistanceResult(): DistanceResultDTO
     {
         return DistanceResultDTO::fromArray([
