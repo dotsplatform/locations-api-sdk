@@ -7,6 +7,7 @@
 
 namespace Dotsplatform\LocationsApiSdk;
 
+use Dotsplatform\LocationsApiSdk\Client\LocationsHttpClient;
 use Illuminate\Support\ServiceProvider;
 
 class LocationsAppServiceProvider extends ServiceProvider
@@ -17,6 +18,8 @@ class LocationsAppServiceProvider extends ServiceProvider
             __DIR__.'/../config/locations-api-sdk.php',
             'locations-server'
         );
+        // One client per worker: it keeps its connection to locations open between calls (see LocationsHttpClient).
+        $this->app->singleton(LocationsHttpClient::class);
     }
 
     public function boot(): void
